@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лоскут.Утилизация — Клин</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Иконка для телефона (замените на свою, если нужно) -->
+    <link rel="apple-touch-icon" href="images/icon.JPG">
+
+    <style>
+        :root {
+            --bg-canvas: #FAF6F0; 
+            --text-dark: #3A3530;
+            --white: #FFFFFF;
+            --patch-lavender: #E8DFF5;
+            --patch-pink: #FCE1E4;
+            --patch-mint: #E8F5E9;
+            --patch-peach: #FCF4DD;
+            --patch-blue: #DDF3F5;
+            --text-lavender: #5D4E70;
+            --text-pink: #7A4F55;
+            --text-mint: #2E5A36;
+            --text-peach: #6B5B3D;
+            --text-blue: #395E66;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        
+        header {
+            background: linear-gradient(135deg, #E8DFF5, #FCE1E4);
+            color: #5D4E70; padding: 18px; text-align: center; font-size: 22px; font-weight: bold;
+            border-bottom: 4px dashed #5D4E70; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .content-container { flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 95px; }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(5px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        h2 { font-size: 20px; margin-bottom: 15px; color: #5D4E70; text-align: center; }
+        .card { border-radius: 16px; padding: 20px; margin-bottom: 18px; box-shadow: 0 4px 8px rgba(0,0,0,0.02); border: 2px dashed rgba(0,0,0,0.15); }
+        .card h3 { font-size: 18px; margin-bottom: 8px; }
+        .card p { font-size: 15px; line-height: 1.5; }
+
+        .lavender { background-color: var(--patch-lavender); color: var(--text-lavender); }
+        .pink { background-color: var(--patch-pink); color: var(--text-pink); }
+        .mint { background-color: var(--patch-mint); color: var(--text-mint); }
+        .peach { background-color: var(--patch-peach); color: var(--text-peach); }
+        .blue { background-color: var(--patch-blue); color: var(--text-blue); }
+
+        .project-img { width: 100%; border-radius: 12px; margin-top: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 2px solid rgba(255,255,255,0.8); }
+        
+        .image-placeholder {
+            width: 100%; height: 200px; background-color: rgba(255,255,255,0.5); border-radius: 12px;
+            margin-top: 12px; display: flex; align-items: center; justify-content: center;
+            color: inherit; font-weight: bold; border: 2px dashed currentColor; font-size: 14px; text-align: center; padding: 10px;
+        }
+
+        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+
+        .method-tabs { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
+        .method-btn { padding: 8px 16px; border: 1px solid #CCC; border-radius: 20px; background: var(--white); cursor: pointer; font-weight: 600; white-space: nowrap; color: #666; }
+        .method-btn.active { background-color: var(--patch-lavender); color: var(--text-lavender); border-color: #5D4E70; }
+
+        nav { position: fixed; bottom: 0; left: 0; right: 0; height: 75px; background-color: #FFFFFF; display: flex; justify-content: space-around; align-items: center; border-top: 3px dashed var(--patch-lavender); box-shadow: 0 -4px 15px rgba(0,0,0,0.02); }
+        .nav-btn { background: none; border: none; color: #999999; font-size: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-weight: 600; }
+        .nav-btn .icon { font-size: 24px; margin-bottom: 3px; }
+        .nav-btn.active { color: var(--text-lavender); }
+    </style>
+</head>
+<body>
+
+    <header>🧵 Лоскут.Утилизация</header>
+
+    <div class="content-container">
+        
+        <!-- ВКЛАДКА 1: ЭКО-БЛОГ -->
+        <div id="blog" class="page active">
+            <h2>🌍 Эко-Манифест Клина</h2>
+            <div class="card mint">
+                <h3>Осознанность вместо пластика</h3>
+                <p>Покупная открытка порадует один день, а потом будет годами разлагаться на полигонах Клина, загрязняя наше Подмосковье. Текстильный апсайклинг — это другая философия. Каждая прихватка создана из спасенных материалов. Это долговечный предмет, который бережет природу.</p>
+                <img src="images/img1.JPG" class="project-img" alt="Выставка готовых прихваток Клин">
+            </div>
+            <div class="card blue">
+                <h3>Масштаб нашей швейной мастерской</h3>
+                <p>Мы шьем по 3 прихватки для мам от абсолютно каждого класса всей нашей школы! Посмотри, сколько уникальных узоров у нас уже получилось сделать вместе с другими классами.</p>
+                <div class="gallery-grid">
+                    <img src="images/img2.JPG" class="project-img" style="margin:0;" alt="Узор 1">
+                    <img src="images/img3.JPG" class="project-img" style="margin:0;" alt="Узор 2">
+                </div>
+            </div>
+        </div>
+
+        <!-- ВКЛАДКА 2: ИСТОРИЯ ПРОЕКТА -->
+        <div id="stories" class="page">
+            <h2>📖 Наша История</h2>
+            <div class="card lavender">
+                <h3>Автор проекта — Шалала</h3>
+                <p>Ученица 8 «В» класса школы имени Маргариты Калининой. Проект зародился, когда ко мне обратилась учительница технологии Ольга Анатольевна Фомичёва с важной задачей: найти полезное применение накопившимся отрезам тканей и плотного фетра.</p>
+                <img src="images/img4.JPG" class="project-img" alt="Шалала — Автор проекта">
+            </div>
+            <div class="card pink">
+                <h3>Секретная технология фетра</h3>
+                <p>Мы используем толстый фетр как скрытый внутренний защитный слой. Он обладает низкой теплопроводностью. На данный момент сшито уже 60 прихваток, наша цель к празднику — 80 штук!</p>
+                <div class="gallery-grid">
+                    <img src="images/img5.JPG" class="project-img" style="margin:0;" alt="Процесс 1">
+                    <img src="images/img6.JPG" class="project-img" style="margin:0;" alt="Процесс 2">
+                </div>
+            </div>
+        </div>
+
+        <!-- ВКЛАДКА 3: СПОСОБЫ ШИТЬЯ -->
+        <div id="process" class="page">
+            <h2>✂️ Творческий Цех и Обучение</h2>
+            
+            <div class="method-tabs">
+                <button class="method-btn active" onclick="switchMethod('m1')">Коллекция узоров</button>
+                <button class="method-btn" onclick="switchMethod('m2')">Новые способы</button>
+                <button class="method-btn" onclick="switchMethod('m3')">Процесс Janome</button>
+                <button class="method-btn" onclick="switchMethod('m4')">Наш Мастер-Класс 👩‍🏫</button>
+            </div>
+
+            <!-- Коллекция узоров -->
+            <div id="m1" class="method-content">
+                <div class="card pink">
+                    <h3>Базовые техники лоскутного шитья</h3>
+                    <p>Здесь представлены наши первые работы: узоры «Сердце», концентрические круги «Роза», ромбы со вставками и симметричные квадраты.</p>
+                    <div class="gallery-grid">
+                        <img src="images/img7.JPG" class="project-img" style="margin:0;" alt="Узор 3">
+                        <img src="images/img8.JPG" class="project-img" style="margin:0;" alt="Узор 4">
+                        <img src="images/img9.JPG" class="project-img" style="margin:0;" alt="Узор 5">
+                        <img src="images/img10.JPG" class="project-img" style="margin:0;" alt="Узор 6">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Новые способы -->
+            <div id="m2" class="method-content" style="display:none;">
+                <div class="card peach">
+                    <h3>Наши новые дизайнерские изделия</h3>
+                    <p>Сложные геометрические комбинации: техника полос «Колодец» (в форме листочка), узор «Песочные часы» с треугольниками, бабочки, лабиринты и объемная бахрома.</p>
+                    <div class="gallery-grid">
+                        <div class="image-placeholder">Фото новых узоров (добавьте свои)</div>
+                        <div class="image-placeholder">Фото новых узоров (добавьте свои)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Процесс Janome -->
+            <div id="m3" class="method-content" style="display:none;">
+                <div class="card blue">
+                    <h3>Работа на машинке Janome</h3>
+                    <p>Мы используем современное оборудование для создания ровных и красивых стежков. Это позволяет нашим изделиям быть не только красивыми, но и прочными.</p>
+                    <div class="image-placeholder">Фото процесса шитья</div>
+                </div>
+            </div>
+
+            <!-- Мастер-класс -->
+            <div id="m4" class="method-content" style="display:none;">
+                <div class="card mint">
+                    <h3>Проводим мастер-классы</h3>
+                    <p>Мы делимся опытом с другими учениками. Присоединяйтесь к нашему творческому цеху!</p>
+                    <div class="image-placeholder">Фото мастер-класса</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- НИЖНЕЕ МЕНЮ -->
+    <nav>
+        <button class="nav-btn active" onclick="switchPage('blog', this)">
+            <span class="icon">🌍</span>
+            <span>Блог</span>
+        </button>
+        <button class="nav-btn" onclick="switchPage('stories', this)">
+            <span class="icon">📖</span>
+            <span>История</span>
+        </button>
+        <button class="nav-btn" onclick="switchPage('process', this)">
+            <span class="icon">✂️</span>
+            <span>Процесс</span>
+        </button>
+    </nav>
+
+    <!-- СКРИПТ ДЛЯ ПЕРЕКЛЮЧЕНИЯ -->
+    <script>
+        function switchPage(pageId, btn) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function switchMethod(methodId) {
+            const contents = document.querySelectorAll('.method-content');
+            contents.forEach(content => content.style.display = 'none');
+            document.getElementById(methodId).style.display = 'block';
+            
+            const methodBtns = document.querySelectorAll('.method-btn');
+            methodBtns.forEach(btn => btn.classList.remove('active'));
+            
+            const activeBtn = document.querySelector(`.method-btn[onclick="switchMethod('${methodId}')"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
